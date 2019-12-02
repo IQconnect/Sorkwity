@@ -1,0 +1,52 @@
+@mixin button-bg($bg) {
+  background: $bg;
+
+  &:hover {
+    background: darken($bg, 8%);
+  }
+
+  &:active {
+    background: darken($bg, 25%);
+  }
+}
+
+.button {
+  color: color("light");
+  text-decoration: none;
+  padding: $gutter ($gutter * 4);
+  border-radius: 0;
+  font-size: $gutter * 2;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 0;
+  background-color: color(primary);
+  animation: pulse 10s ease-in-out 20s infinite;
+  width: 100%;
+
+  @include media(xs) {
+    width: auto;
+  }
+
+  &:hover {
+    background-color: lighten(color(primary), 10%);
+  }
+}
+
+@keyframes pulse {
+  3% {
+    transform: scale3d(0.8, 0.8, 1);
+  }
+
+  6% {
+    transform: scale3d(1, 1.1, 1);
+  }
+
+  8% {
+    transform: scale3d(1, 1, 1);
+  }
+}

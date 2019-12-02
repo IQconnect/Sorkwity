@@ -1,0 +1,47 @@
+.sub-menu {
+  position: relative;
+  left: 0;
+  top: 100%;
+  list-style: none;
+  padding: $gutter ($gutter * 2) ($gutter * 2);
+  color: theme-color("light");
+  background-color: color(primary);
+  opacity: 1;
+  transition: $transition;
+  z-index: 99;
+  width: 0%;
+
+  @include mediaTo(md) {
+    top: 0%;
+    background-color: color(primary);
+  }
+
+  @include media("md") {
+    opacity: 0;
+    padding: $gutter ($gutter * 2);
+    pointer-events: none;
+    width: auto;
+    height: auto;
+    position: absolute;
+    display: grid !important;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr 1fr 1fr !important;
+  }
+
+  li {
+    margin-left: 0 !important;
+
+    &:first-child {
+      @include media("md") {
+        display: none;
+      }
+    }
+  }
+
+  .menu-item.menu-item a {
+    &:hover {
+      color: color(light);
+    }
+  }
+}

@@ -1,0 +1,41 @@
+/** Import Bootstrap functions */
+@import "~bootstrap/scss/functions";
+
+$theme-colors: (
+  light: #fff,
+  dark: #000,
+  primary: #366298,
+  secondary: #629be2,
+  grey: #707070,
+  special: #65af1c,
+  shade: #f3f3f3
+);
+
+$media: (
+  xs: 576px,
+  sm: 768px,
+  md: 1200px,
+  lg: 1300px,
+  xl: 1440px
+);
+
+$transition: 0.4s;
+
+$font-family: (
+  main: "Montserrat",
+  title: "Ubuntu"
+);
+
+$gutter: 8px;
+$gutter_num: 8;
+
+/** Bootstrap navbar fix (https://git.io/fADqW) */
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
+
+$z-index: (
+  infobar: 200,
+  header: 100,
+  preloader: 300,
+  popup: 250
+);

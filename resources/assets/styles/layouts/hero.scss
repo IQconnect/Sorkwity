@@ -1,0 +1,45 @@
+.hero {
+  @extend .overlay;
+
+  height: 100vh;
+  position: relative;
+  color: color(light);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    @include cssLock("margin-bottom", 360, 1920, (gutter_num(4), gutter_num(8)));
+
+    margin-top: 10vh;
+  }
+
+  &__carousel {
+    @extend .absolute;
+
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__cell {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  &__image {
+    @extend .absolute;
+    @extend .image;
+  }
+
+  .flickity-viewport {
+    width: 100%;
+    height: 100% !important;
+  }
+}

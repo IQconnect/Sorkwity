@@ -1,0 +1,101 @@
+%text {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+.headline {
+  @include cssLock("font-size", 360, 1920, (gutter_num(3), gutter_num(8)));
+
+  font-family: map-get($font-family, title);
+  font-weight: 800;
+  line-height: 1.7;
+
+  @extend %text;
+}
+
+.title {
+  @include cssLock("font-size", 360, 1920, (gutter_num(2), gutter_num(4)));
+
+  font-family: map-get($font-family, main);
+  font-weight: 800;
+
+  @extend %text;
+}
+
+.subtitle {
+  @include cssLock("font-size", 360, 1920, (16, 32));
+
+  font-family: map-get($font-family, title);
+  font-weight: 800;
+
+  @extend %text;
+
+  &--center {
+    text-align: center;
+  }
+}
+
+.text {
+  @include cssLock("font-size", 360, 1920, (12, 16));
+
+  font-family: map-get($font-family, main);
+
+  @extend %text;
+
+  &--thin {
+    font-weight: 300;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+}
+
+.large-text {
+  @include cssLock("font-size", 360, 1920, (16, 20));
+
+  font-family: map-get($font-family, main);
+  font-weight: 800;
+}
+
+.small-text {
+  @include cssLock("font-size", 360, 1920, (10, 12));
+
+  font-family: map-get($font-family, main);
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.my-menu-link {
+  @include cssLock("font-size", 360, 1920, (10, 16));
+
+  font-weight: 400;
+}
+
+.main-font {
+  font-family: map-get($font-family, main);
+}
+
+.title-font {
+  font-family: map-get($font-family, title);
+}
+
+.link {
+  transition: $transition;
+
+  &:hover {
+    color: color(special);
+  }
+}

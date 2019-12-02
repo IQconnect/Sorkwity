@@ -1,0 +1,68 @@
+$line-height: 1px;
+
+.line {
+  position: relative;
+
+  &::before,
+  &::after {
+    @extend .absolute;
+
+    content: "";
+    background: color(light);
+
+    @include mediaTo(md) {
+      display: none;
+    }
+  }
+
+  &::before {
+    width: 100vw;
+    height: $line-height;
+    right: calc(105% + #{gutter(1.7)});
+    left: unset;
+  }
+
+  &::after {
+    width: gutter(1.5);
+    height: gutter(1.5);
+    left: unset;
+    right: 105%;
+    border-radius: 100%;
+    background: transparent;
+    border: 1px solid color(light);
+  }
+
+  &--primary {
+    &::before {
+      background: color(primary);
+    }
+
+    &::after {
+      border-color: color(primary);
+    }
+  }
+
+  &--top {
+    &::before,
+    &::after {
+      bottom: unset;
+      top: gutter(5);
+    }
+
+    &::after {
+      transform: translateY(-50%);
+    }
+  }
+
+  &--right {
+    &::before {
+      left: calc(105% + #{gutter(1.7)});
+      right: unset;
+    }
+
+    &::after {
+      left: 105%;
+      right: unset;
+    }
+  }
+}

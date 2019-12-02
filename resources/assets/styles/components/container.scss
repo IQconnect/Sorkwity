@@ -1,0 +1,25 @@
+.container {
+  max-width: calc(100% - 200px);
+  margin: 0 auto;
+
+  @media (max-width: 998px) {
+    max-width: 100%;
+    padding: 0 ($gutter * 3);
+  }
+
+  &--small {
+    max-width: calc(80% - 200px);
+    width: 100%;
+
+    @media (max-width: 998px) {
+      max-width: 100%;
+    }
+  }
+
+  &--full-mobile {
+    @media (max-width: 998px) {
+      max-width: 100%;
+      padding: 0 ($gutter * 3);
+    }
+  }
+}

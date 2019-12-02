@@ -1,0 +1,360 @@
+.header {
+  $root: &;
+
+  //position: fixed;
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: color(primary);
+  //z-index: map-get($z-index, "header");
+  transition: $transition;
+
+  @include media(md) {
+    color: color("light");
+  }
+
+  @include mediaTo(md) {
+    background-color: color("special_dark");
+  }
+
+  &--bg {
+    background-color: color("special_dark");
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &--hide {
+    @include media(md) {
+      background-color: color("special_dark");
+      padding: gutter(2) 0;
+
+      #{$root}__brand {
+        width: gutter(1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .row {
+    align-items: center;
+
+    @include media(md) {
+      align-items: center;
+    }
+  }
+
+  &__brand {
+    width: $gutter * 4;
+    height: 100%;
+    z-index: 20;
+    transition: $transition;
+
+    @include media(md) {
+      width: $gutter * 4;
+      height: 100%;
+      margin: $gutter * 0.2 $gutter * 0.5 0;
+      z-index: 20;
+    }
+
+    img {
+      max-width: 245px;
+
+      @include media(md) {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &__hamburger {
+    position: absolute;
+    right: 15px;
+    top: $gutter * 13;
+    z-index: 40;
+
+    @include media(md) {
+      display: none;
+    }
+  }
+
+  &__items {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+
+    @include media(md) {
+      display: flex;
+      align-content: center;
+      flex-direction: unset;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+    max-width: 0;
+    height: 100vh;
+    z-index: 10;
+    right: 0;
+    transition: $transition;
+    overflow: hidden;
+
+    @include media(md) {
+      position: relative;
+      height: auto;
+      max-width: 100%;
+      flex-direction: row;
+      padding: $gutter * 1 $gutter * 1;
+      background-color: color(primary);
+      overflow: initial;
+
+      &::before {
+        content: "";
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0;
+        background-color: color(primay);
+      }
+    }
+
+    &::before {
+      content: "";
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0;
+      background-color: color(primay);
+      transition: $transition;
+      pointer-events: none;
+
+      @include media(md) {
+        display: none;
+      }
+    }
+
+    &.-is-active {
+      max-width: 100%;
+      margin: 0 auto;
+      right: 0;
+      padding: 0 10%;
+      z-index: 30;
+      background-color: color(primary);
+
+      &::before {
+        opacity: 0.8;
+      }
+
+      a {
+        opacity: 1 !important;
+        font-size: 15px !important;
+        color: color(light) !important;
+      }
+    }
+
+    .menu-item-has-children {
+      & > a {
+        pointer-events: none;
+
+        @include media(md) {
+          pointer-events: initial;
+        }
+      }
+    }
+
+    .menu-item {
+      padding-top: ($gutter * 2);
+      position: relative;
+
+      @include media(md) {
+        margin: 0 ($gutter * 2);
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+          margin-right: 0;
+        }
+      }
+
+      a {
+        @extend .my-menu-link;
+
+        position: relative;
+        color: inherit;
+        white-space: nowrap;
+        display: block;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: color 0.1s, background-color 0.1s, padding 0.2s ease-in;
+
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          height: 3px;
+          width: gutter(5);
+          background-color: color(light);
+          transform-origin: right top;
+          transform: scale(0, 1);
+          transition: color 0.1s, transform 0.2s ease-out;
+        }
+
+        &:active::before {
+          background-color: color(light);
+        }
+
+        &:hover::before,
+        &:focus::before {
+          transform-origin: left top;
+          transform: scale(1, 1);
+        }
+      }
+
+      &.current-menu-item {
+        color: map-get($theme-colors, "special-extra");
+
+        &::after {
+          opacity: 1;
+          background-color: map-get($theme-colors, "special-extra");
+
+          @include media(md) {
+            opacity: 0;
+            background-color: map-get($theme-colors, "special");
+          }
+        }
+      }
+
+      &:hover {
+        .sub-menu {
+          display: block;
+
+          @include media(md) {
+            opacity: 1;
+            pointer-events: initial;
+          }
+        }
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include mediaTo(md) {
+      justify-content: center;
+
+      li {
+        height: 100%;
+      }
+    }
+
+    @include media(md) {
+      padding: 0;
+      margin-left: 0;
+      flex-direction: row;
+    }
+  }
+
+  &__sm {
+    position: relative;
+    margin-top: $gutter;
+
+    @include media(md) {
+      margin-top: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: map-get($theme-colors, "light");
+      margin: auto 0;
+      width: 1px;
+      height: 110%;
+      display: none;
+
+      @include media(md) {
+        display: initial;
+      }
+    }
+
+    @include media(md) {
+      padding: 0 0 0 ($gutter * 3);
+    }
+  }
+
+  &__button {
+    @extend .my-menu-link;
+
+    padding: $gutter * 1;
+    width: auto;
+    height: $gutter * 8;
+    border: 2px solid color("primary");
+    background: color("primary");
+    color: color("light");
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    position: fixed;
+    right: 0;
+
+    @include media(md) {
+      position: relative;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      right: 0;
+    }
+
+    img {
+      height: auto;
+      width: $gutter * 3;
+      margin-right: $gutter * 3;
+    }
+  }
+
+  &__input {
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 0;
+      font-size: 16px;
+      background-color: color(secondary);
+      background-image: url("images/lupa.png");
+      background-position: 90% 10px;
+      background-size: 25px;
+      background-repeat: no-repeat;
+      padding: 12px 20px 12px 12px;
+    }
+
+    ::placeholder {
+      color: color(light);
+    }
+  }
+}

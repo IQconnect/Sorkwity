@@ -1,0 +1,207 @@
+.diary {
+  $root: &;
+
+  padding-left: 0;
+  position: relative;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+
+  @include media(lg) {
+    margin: 0 auto;
+    display: inherit;
+  }
+
+  &__header {
+    text-align: center;
+    color: color(primary);
+    position: relative;
+
+    @include media(lg) {
+      margin: 0 auto;
+      padding-bottom: $gutter * 23;
+    }
+  }
+
+  &__part {
+    @include cssLock(
+      "max-width",
+      360,
+      1920,
+      ($gutter_num * 40, $gutter_num * 150)
+    );
+
+    position: relative;
+    margin-bottom: $gutter * 4;
+
+    @include media(lg) {
+      position: relative;
+      display: flex;
+      margin: 0 auto;
+    }
+
+    &--right {
+      @include media(lg) {
+        justify-content: flex-end;
+
+        #{$root}__content {
+          padding-left: $gutter * 7;
+          padding-right: 0;
+          text-align: left;
+        }
+      }
+    }
+
+    &--special {
+      @include media(lg) {
+        justify-content: space-evenly;
+      }
+    }
+  }
+
+  &__marker {
+    @include media(lg) {
+      position: absolute;
+      top: gutter(7);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      height: 70%;
+      width: 1px;
+    }
+
+    &::before {
+      @include media(lg) {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+        width: $gutter * 0.125;
+        height: 100%;
+        background-color: lighten(color(primary), 10%);
+        max-height: 100%;
+      }
+    }
+
+    &::after {
+      @include media(lg) {
+        content: "";
+        position: absolute;
+        top: 100%; //$gutter * 32;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: $gutter;
+        height: $gutter;
+        border-radius: 50%;
+        border: $gutter * 0.125 solid color(primary);
+        background-color: color(light);
+        transform: translateX(gutter(-0.5));
+      }
+    }
+
+    &--special {
+      &::after {
+        @include media(lg) {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          content: "";
+          display: block;
+          width: $gutter * 2;
+          height: $gutter * 2;
+          border-radius: 50%;
+          border: $gutter * 0.125 solid color(primary);
+          background-color: color(special);
+        }
+      }
+    }
+
+    &--last {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__content {
+    @include cssLock(
+      "max-width",
+      360,
+      1920,
+      ($gutter_num * 40, $gutter_num * 45)
+    );
+
+    @include media(lg) {
+      text-align: right;
+      padding-right: $gutter * 7;
+    }
+
+    &--last {
+      @include media(lg) {
+        margin-right: $gutter * 16;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include cssLock(
+      "margin-bottom",
+      360,
+      1920,
+      ($gutter_num * 1, $gutter_num * 2)
+    );
+
+    color: color(primary);
+    display: inline-block;
+
+    @include media(lg) {
+      margin-block-start: 0;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    color: rgba(color(dark), 0.7);
+
+    @include media(lg) {
+      word-spacing: $gutter * 0.25;
+      flex-direction: row;
+    }
+  }
+
+  &__year {
+    position: initial;
+    top: $gutter * 1.7;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    color: color(primary);
+    display: inline-block;
+
+    @include media(lg) {
+      position: absolute;
+      text-align: center;
+      top: 0;
+      height: 100%;
+      padding: 0;
+      margin-bottom: 13px;
+    }
+  }
+
+  &__gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: $gutter * 1;
+    margin-top: gutter(2);
+
+    a {
+      position: relative;
+    }
+  }
+}

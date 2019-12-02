@@ -1,0 +1,14 @@
+.full-img {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+
+  @include media(md) {
+    max-height: gutter(100);
+  }
+
+  &__bg {
+    width: 100%;
+    height: auto;
+  }
+}
